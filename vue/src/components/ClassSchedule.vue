@@ -178,7 +178,7 @@ export default {
           alert("Registered for " + this.selectedClass.className);
           console.log("Registered for class");
           console.log(this.currentClass.sessionDate);
-          
+          window.location.reload();
           this.isRegistrationVisible = false;
         })
         .catch((error) => {

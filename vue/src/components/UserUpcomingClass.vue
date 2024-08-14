@@ -28,9 +28,11 @@ export default {
                 });
         },
         formatDate(dateString) {
-            const options = { month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString(undefined, options);
-        }
+    const [year, month, day] = dateString.split('-');
+    const date = new Date(year, month - 1, day); // Treats the date as a local date
+    const options = { month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+}
     },
     mounted() {
         this.getUpcomingClasses();
