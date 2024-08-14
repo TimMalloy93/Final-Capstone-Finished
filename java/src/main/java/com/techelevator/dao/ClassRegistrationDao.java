@@ -10,5 +10,5 @@ import java.util.List;
 public interface ClassRegistrationDao {
     List<ClassRegistration> myClasses (Principal principal);
     ClassRegistration displayRegistration(Date date, String className);
-    void registerForClass(ClassRegistration classRegistration, Principal principal);
+    void registerForClass(Date date, ClassRegistration classRegistration, Principal principal);
 }

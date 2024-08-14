@@ -29,9 +29,9 @@ public class ClassRegistrationController {
         return classRegistrationDao.displayRegistration(date, className);
     }
 
-    @PostMapping()
-    public void registerForClass(@RequestBody ClassRegistration classRegistration, Principal principal){
-        classRegistrationDao.registerForClass(classRegistration, principal);
+    @PostMapping("/{date}")
+    public void registerForClass(@PathVariable ("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, @RequestBody ClassRegistration classRegistration, Principal principal){
+        classRegistrationDao.registerForClass(date, classRegistration, principal);
     }
 
     @GetMapping("/myclasses")

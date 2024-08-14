@@ -108,7 +108,7 @@ public class JdbcClassRegistrationDao implements ClassRegistrationDao{
         return classRegistrations;
     }
     @Override
-    public void registerForClass(ClassRegistration classRegistration, Principal principal) {
+    public void registerForClass(Date date, ClassRegistration classRegistration, Principal principal) {
         User currentUser = userDao.getUserByUsername(principal.getName());
         String sql1 = "INSERT INTO occupancy (class_id, session_date, total_capacity, current_capacity)\n" +
                 "VALUES (?,  ?, ?, ?);\n";
@@ -116,7 +116,7 @@ public class JdbcClassRegistrationDao implements ClassRegistrationDao{
                 "INSERT INTO class_registration(user_id, occupancy_id)\n" +
                 "VALUES (?, (SELECT occupancy_id FROM occupancy ORDER BY occupancy_id DESC LIMIT 1)); ";
         try{
-            jdbcTemplate.update(sql1, classRegistration.getClassId(), classRegistration.getSessionDate(), classRegistration.getTotalCapacity(), classRegistration.getCurrentCapacity());
+            jdbcTemplate.update(sql1, classRegistration.getClassId(), date, classRegistration.getTotalCapacity(), classRegistration.getCurrentCapacity());
             jdbcTemplate.update(sql2, currentUser.getId());
         }catch(CannotGetJdbcConnectionException e){
             throw new DaoException("Cannot connect to database", e);
