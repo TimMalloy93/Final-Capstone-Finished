@@ -172,7 +172,8 @@ export default {
       this.isRegistrationVisible = true;
     },
     registerForThisClass(){
-      ClassRegistrationService.registerForClass(this.currentClass)
+      console.log("Registering for class " + this.currentClass.sessionDate);
+      ClassRegistrationService.registerForClass(this.currentClass.sessionDate, this.currentClass)
         .then(() => {
           alert("Registered for " + this.selectedClass.className);
           console.log("Registered for class");

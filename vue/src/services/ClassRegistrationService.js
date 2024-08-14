@@ -19,10 +19,10 @@ export default {
   registrationDetails(date, className) {
     return http.get(`/class/register/${date}/${className}`);
   },
-  registerForClass(classRegistration) {
-    return http.post('/class/register', classRegistration)
+  registerForClass(date, classRegistration) {
+    return http.post(`/class/register/${date}`, classRegistration);
   },
   getRegisteredClasses() {
-    return http.get('/class/register/myclasses')
+    return http.get('/class/register/myclasses');
   },
 }
